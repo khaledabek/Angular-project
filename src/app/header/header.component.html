@@ -1,0 +1,18 @@
+<mat-toolbar>
+
+      <mat-toolbar-row>
+            <span>
+                    <a mat-raised-button routerLink="/account">My-Account</a>
+                    <a mat-raised-button routerLink="/products" >Products</a>
+                    <a mat-raised-button routerLink="/home">Home <mat-icon>home</mat-icon></a>
+                    <a mat-raised-button routerLink="/cart" *ngIf="userInfo.userName!='Guest'">My-Cart</a>
+            </span>
+            <span class="spacer"></span>
+            <span>hello {{userInfo.userName}}</span>
+            <span>
+                    <img [src]="userInfo.userUrlAvatar"/>
+
+              </span>
+      </mat-toolbar-row>
+
+</mat-toolbar>

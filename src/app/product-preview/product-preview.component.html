@@ -1,0 +1,13 @@
+
+
+    <mat-card-title-group>
+        <img mat-card-sm-image *ngIf="CarPreview.Picture" [src]="CarPreview.Picture"/> 
+        <mat-card-title>{{CarPreview.CarTypeId.ModelMake|filter:carMaker}},{{CarPreview.CarTypeId.ModelName| filter:carModel}}</mat-card-title>
+        <mat-card-subtitle>{{CarPreview.CarTypeId.ModelYear}}</mat-card-subtitle>
+        <mat-card-subtitle  *ngIf="CarPreview.CarTypeId.Model">{{ CarPreview.CarTypeId.Model | appStringShort:15 }}</mat-card-subtitle>
+    </mat-card-title-group>
+    <!--for car price-->
+    <mat-card-content>
+        <p>price:<span appPriceTag="CarPreview.ModelWeightKg"></span></p>
+    </mat-card-content>
+    

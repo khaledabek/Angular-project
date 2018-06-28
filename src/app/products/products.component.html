@@ -1,0 +1,134 @@
+
+<mat-card class="searchBox">
+  <mat-card-content>
+    <mat-input-container>
+          <!--two way binding-->
+      <input matInput [(ngModel)]="carMaker" name="CarMakerFilter" placeholder="Enter Car Maker" #CarFilterInput>
+    </mat-input-container>
+    <mat-input-container>
+      <input matInput [(ngModel)]="carModel" name="CarModelFilter" placeholder="Enter Car Model" #CarFilterInput>
+    </mat-input-container>
+    <mat-input-container>
+        <input matInput [(ngModel)]="modelYear" name="ModelYearFilter" placeholder="Enter Model Year" #CarFilterInput>
+      </mat-input-container>
+      <mat-input-container>
+      <input matInput [(ngModel)]="textFilter" name="textFilter" placeholder="Enter free text" #CarFilterInput>
+    </mat-input-container>
+  <!--
+    <button mat-button (click)="searchCars(CarFilterInput.value)"> search</button>
+    <mat-spinner *ngIf="searching" [diameter]="30" [strokeWidth]="3"></mat-spinner>
+  -->
+  </mat-card-content>
+</mat-card>
+<p *ngIf="CarList.length==0" >THERE NO CARS TO SHOW...check connection<span *ngIf="userInfo.Rank=='Admin'">PLEASE ADD CARS!!!</span>  </p>
+<mat-accordion><!-- *ngIf="userInfo.Rank=='Admin'"-->
+  <mat-expansion-panel [expanded]="togel===true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Car data
+      </mat-panel-title>
+      <mat-panel-description>
+        Enter the new car type
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form  [formGroup]="carTypeForm">
+    <!--<mat-form-field>
+      <input matInput formControlName="ModelMake"    placeholder="Company" [(ngModel)]="carType.ModelMake">
+      <!<mat-hint align="end">{{Company.value?.length || 0}}/10</mat-hint>--
+    </mat-form-field>-->
+    <mat-form-field>
+      <input matInput formControlName="Model" placeholder="Model" [(ngModel)]="carType.Model">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="ModelName" placeholder="Model Name" [(ngModel)]="carType.ModelName">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" pattern="[0-9]*" [min]="getyear(-20)" [max]="getyear(1)" formControlName="ModelYear" placeholder="Model Year" [(ngModel)]="carType.ModelYear">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput pattern="[0-9]*" formControlName="ModelWeightKg" placeholder="Model Weight (In Kg)" [(ngModel)]="carType.ModelWeightKg">
+    </mat-form-field>
+    <button mat-raised-button color="warn" [disabled]="carTypeForm.pristin" style="float:right" (click)="resetForm()">Reset All</button>
+    <button mat-raised-button color="warn" [disabled]="!carTypeForm.valid" style="float:right" (click)="AddcarType(carType)">Add Type</button>
+    <mat-form-field>
+      <input matInput pattern="[0-9]*" formControlName="ModelDoors" placeholder="Model Doors" [(ngModel)]="carType.ModelDoors">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="Gear" placeholder="Gear(Auto/Manual)" [(ngModel)]="carType.Gear" >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="ModelBody" placeholder="Model Body" [(ngModel)]="carType.ModelBody">
+    </mat-form-field>
+    </form>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Car Status
+      </mat-panel-title>
+      <mat-panel-description>
+        Enter the car status, 
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form  [formGroup]="addForm">
+    <mat-form-field>
+        <input matInput formControlName="carTypeId" name="carTypeId"   placeholder="car Type Id" [(ngModel)]="carType.CarTypeId">
+      </mat-form-field>
+      <mat-form-field>
+      <input matInput pattern="[0-9]*" formControlName="ActuallyKm" placeholder="Km counter" [(ngModel)]="carStatus.ActuallyKm">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="Picture" placeholder="Add Picture URL" [(ngModel)]="carStatus.Picture">
+    </mat-form-field> 
+    <mat-form-field>
+      <input matInput pattern="[0-9]*" formControlName="DayDelayPrice" placeholder="Day Delay Price" [(ngModel)]="carStatus.DayDelayPrice">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput pattern="[0-9]*" formControlName="DayPrice" placeholder="Day Price" [(ngModel)]="carStatus.DayPrice">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput pattern="[0-9]*" formControlName="PlateNumber" placeholder="Plate Number" [(ngModel)]="carStatus.PlateNumber">
+    </mat-form-field>
+    <br>
+        Prepared To  Rent:
+    <mat-radio-group matInput   formControlName="ProperToBeRent" [(ngModel)]="carStatus.ProperToBeRent">
+      <mat-radio-button name="ProperToBeRent" class="example-margin" value="true">Prepared</mat-radio-button> 
+      <mat-radio-button name="ProperToBeRent" class="example-margin" value="false">Not prepared</mat-radio-button>
+    </mat-radio-group>
+    <button mat-raised-button color="warn" [disabled]="carTypeForm.pristin" style="float:right" (click)="resetForm()">Reset</button>
+<button mat-raised-button color="warn" [disabled]="!addForm.valid" style="float:right" (click)="AddCar(carStatus)">Add car</button>
+    <p style="float:right" *ngIf="isQueryDone==true">The car added</p>
+    <br>
+      Avaible To Rent:
+      <mat-radio-group matInput name="AvaibleToBeRent"  formControlName="AvaibleToBeRent" [(ngModel)]="carStatus.AvaibleToBeRent">
+        <mat-radio-button class="example-margin" value="true">Avaible</mat-radio-button> 
+        <mat-radio-button class="example-margin" value="false">Not avaible</mat-radio-button>
+        </mat-radio-group>
+      </form>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+<!--show the cars-->
+<mat-grid-list cols="3" rowHeight="1:1" >
+  <mat-grid-tile  *ngFor="let x of CarList|filter:carMaker:carModel:modelYear:textFilter; index as i">
+      <mat-card class="Car">
+          <app-product-preview [CarPreview]="x"></app-product-preview>
+          <mat-card-footer>
+            
+              <button mat-raised-button color="warn" *ngIf="x.CarTypeId.Model; else noDetails" (click)="showFullDetail(x.PlateNumber)">show full details</button>
+              <ng-template #noDetails>
+                This Car has no details
+              </ng-template>
+              <p></p>
+              <div style="float:right"><!--*ngIf="userInfo.Rank=='Admin'"-->
+              <button  (click)="DeleteCar(x)"><mat-icon>delete</mat-icon></button>
+              <button  (click)="EditCar(x)"><mat-icon>edit</mat-icon></button>
+            </div>
+          </mat-card-footer>
+      </mat-card>
+   
+    
+  </mat-grid-tile>
+
+</mat-grid-list>

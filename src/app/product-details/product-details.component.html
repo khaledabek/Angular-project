@@ -1,0 +1,48 @@
+<mat-card *ngIf="Car">
+    <mat-card-title-group>
+        <mat-card-title>{{Car.CarTypeId.ModelMake}},{{Car.CarTypeId.ModelName}}</mat-card-title>
+        <mat-card-subtitle>{{Car.CarTypeId.ModelYear}}</mat-card-subtitle>
+        <img mat-card-sm-image *ngIf="Car.Picture" [src]="Car.Picture"/>  
+    </mat-card-title-group>
+   <mat-card-content>
+        <p [innerHtml]="Car?.CarTypeId.Model"></p>
+        <p *ngIf="Car.CarTypeId.ModelBody">Model Body Type: {{Car.CarTypeId.ModelBody}}</p>
+        <p *ngIf="Car.CarTypeId.ModelWeightKg">Model Weight: {{Car.CarTypeId.ModelWeightKg}}-Kg</p>
+        <p *ngIf="Car.CarTypeId.ModelDoors">Model Doors number: {{Car.CarTypeId.ModelDoors}}</p>
+        <p *ngIf="Car.CarTypeId.Gear">Gear: {{Car.CarTypeId.Gear}}</p>
+
+        <h2>-Car Status Data-</h2>
+      <p>Dayly rent price:<span appPriceTag="Car?.DayPrice?"></span></p> 
+      <p>Delay price(for day):<span appPriceTag="Car?.DayDelayPrice?"></span></p>
+      <p>Counter Km: {{Car.ActuallyKm}}</p>
+      <p>Propered to rent: {{Car.ProperToBeRent?"cleaned&washed":"Derty"}}</p>
+      <p>Plate number: {{Car.PlateNumber}}</p>
+      <p>Branch:{{Car.BranchId.BranchName}},Adress-{{Car.BranchId.Adress}}</p>
+
+    </mat-card-content>
+
+    <mat-card-footer class="footer">
+        <mat-card-actions>
+            <button mat-raised-button color="primary" [disabled]="!Car.AvaibleToBeRent || !isLogedIn.state">
+                        {{Car.AvaibleToBeRent?"Add Car to Collection":"The car not available"}}
+                        </button>
+<div>
+    Rent date: <input
+    type="text"
+    class="form-control"
+    bsDaterangepicker
+    placeholder="Rent"
+    [bsConfig]="datepickerConfig"
+    [(bsValue)]="rentDate"
+    >
+
+    <h5>*maximum one year to be rent.<br/>
+    you can renew the renting before the end date</h5>
+</div>
+                        <button mat-raised-button color="primary" (click)="goBack()">
+                                Back to Car list
+                                </button>
+        </mat-card-actions>
+    </mat-card-footer>
+
+</mat-card>

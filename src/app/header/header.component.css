@@ -1,0 +1,21 @@
+img {
+    height: 50px;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+
+  .mat-toolbar{
+    height: 100px;
+    padding: 30px;
+  }
+
+
+  

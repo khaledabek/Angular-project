@@ -1,0 +1,17 @@
+
+
+<mat-card class="home-card">
+        <mat-card-header >
+          <mat-card-title><h1>{{storeInfo?.storeName}}</h1></mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content>
+                <img class="img-card" mat-card-image [src]="storeInfo?.mainImage">
+        </mat-card-content>
+        <mat-card-footer>
+                <div>{{storeInfo?.address?.localInfo()}}</div>
+                <app-country-info [country]="storeInfo?.address"></app-country-info>
+        </mat-card-footer>
+      </mat-card>
+      
+      

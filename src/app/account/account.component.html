@@ -1,0 +1,28 @@
+<mat-toolbar>
+
+        <mat-toolbar-row>
+                <span>
+                            <a mat-raised-button routerLink="/account/login" *ngIf="!isLogedIn.state" (click)="tabState='Login'">Login</a>
+                            <a mat-raised-button routerLink="/account/register" *ngIf="!isLogedIn.state" (click)="tabState='Register'">Register</a>
+                            <a mat-raised-button href="javascript:void(0)" *ngIf="isLogedIn.state" (click)="logOutUser()">Logout</a>
+                   </span>
+
+
+        </mat-toolbar-row>
+
+</mat-toolbar>
+<mat-tab-group>
+       
+        <mat-tab  *ngIf="!isLogedIn.state" label="{{tabState}}" >
+             <router-outlet></router-outlet>
+        </mat-tab>
+        <mat-tab label="My Profile">
+                <h2>User Name:</h2>
+                <span>{{user.userName}}</span>
+                <span>
+                        <img [src]="user.userUrlAvatar"/>
+    
+                 </span>
+
+        </mat-tab>
+</mat-tab-group>

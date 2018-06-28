@@ -1,0 +1,11 @@
+.home-card {
+   min-width: 100%;
+   -webkit-box-align: center;
+   text-align:center;
+  }
+
+  .img-card{
+      max-width: 800px;
+  }
+
+  

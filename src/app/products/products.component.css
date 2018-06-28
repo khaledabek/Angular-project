@@ -1,0 +1,26 @@
+mat-card-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .Car{
+      min-width: 90%;
+      min-height: 300px;
+      color: black;
+    background-color: white;
+    padding: 20px;
+    margin: 30px; 
+ }
+
+ .searchBox{
+  color: black;
+  background-color:gray;
+  margin:40px;
+ }
+
+
+ mat-card-content{
+   display: flex;
+  -webkit-box-orient:horizontal;
+  -webkit-box-align: center;
+ }

@@ -1,0 +1,31 @@
+<mat-card>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+        <form novalidate [formGroup]="loginForm" (ngSubmit)="changeUser()">
+            <p>
+                <mat-input-container>
+                    <!-- Each formControlName binds to one formControl inside the formGroup property: -->
+                    <input type="text" matInput placeholder="Username" formControlName="userName" />
+                </mat-input-container>
+            </p>
+            <p class="loginError">
+                <app-error [controlParam]="loginForm.controls['userName']"></app-error>
+            </p>
+            <p>
+                <mat-input-container>
+                    <!-- Each formControlName binds to one formControl inside the formGroup property: -->
+                    <input matInput placeholder="Enter your password" formControlName="userPassword" [type]="hide ? 'password' : 'text'">
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                </mat-input-container>
+            </p>
+            <p class="loginError">
+                <app-error [controlParam]="loginForm.controls['userPassword']" [validateState]="dirty"></app-error>
+            </p>
+            <p class="loginError">{{errorMsg}}</p>
+            <p class="loginButtons" mat-raised-button>
+                <input type="submit" mat-button value="Login" [disabled]="!loginForm.valid" />
+            </p>
+
+        </form>
+    </mat-card-content>
+</mat-card>

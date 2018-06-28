@@ -1,0 +1,123 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+  <mat-step>
+      <mat-card-content>
+      <ng-template matStepLabel>Register</ng-template>
+      <form  [formGroup]="registerForm" onchange="log(registerForm)">
+       
+            <mat-input-container>
+             <!-- <div class="div-form">-->
+         <input matInput  type="text" placeholder="Full Name" formControlName="fullName"/> <!--[(ngModel)]="newUser.fullName"-->
+      </mat-input-container>
+      <p class="registerError">
+          <app-error [controlParam]="registerForm.controls['fullName']"></app-error>
+      </p>
+          <mat-input-container>
+                     <input  matInput type="text" placeholder="ID" formControlName="id" /> 
+          </mat-input-container>
+          <p class="registerError">
+              <app-error [controlParam]="registerForm.controls['id']"></app-error>
+          </p>
+                <mat-input-container>
+                  <input matInput  type="email" placeholder="Email address"  formControlName="email">
+                </mat-input-container>
+                    <p class="registerError">
+                        <app-error [controlParam]="registerForm.controls.emailGroup.controls['email']"></app-error>
+                    </p>
+                  <!--  <mat-error>
+                      {{errors.email}}
+                    </mat-error>-->
+            
+                  <mat-form-field>	
+                    <input matInput  placeholder="Confirm email address" type="email" formControlName="confirmEmail"><!-- [errorStateMatcher]="confirmValidParentMatcher"--                                                               >
+                    <p class="registerError">
+                        <app-error [controlParam]="registerForm.controls.emailGroup.controls['confirmEmail']"></app-error>
+                    </p>
+                  <!--  <mat-error>
+                      {{errors.confirmEmail}}
+                    </mat-error>-->
+                  </mat-form-field>
+                
+                  <mat-input-container>
+           <input matInput type="date" placeholder="Date of birth" formControlName="birthDate" [min]="getTheDate(-100)" [max]="getTheDate(-5)"  />
+                  </mat-input-container>
+                  <div>
+          Gender:          <mat-radio-group name="gender" >
+                           <mat-radio-button class="example-margin" value="male">Male</mat-radio-button> 
+                           <mat-radio-button class="example-margin" value="female">Female</mat-radio-button>
+                           </mat-radio-group>
+                          </div>
+      </form>
+    </mat-card-content>
+
+      <div>
+          <button mat-button matStepperNext>Next</button>
+
+      </div>
+  </mat-step>
+  <mat-step>
+    <form>
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <div *ngIf="countryList?.length">
+          
+            <div class="dropdown">
+              <p>Country:</p>
+              <button (click)="setCountryMode()">     
+                  <app-country-info [country]="selectedCountry"></app-country-info>
+              </button>
+          
+              <ul *ngIf="selectCountryMode">
+                <li *ngFor="let x of countryList">
+                    <app-country-info [country]="x" (onSelectCountry)="setUserCountry($event)"></app-country-info>
+                </li>
+              </ul>
+          
+          
+            </div>
+          </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+      <form novalidate [formGroup]="registerForm">
+          <ng-template matStepLabel>Fill out your Password</ng-template>
+  <div formGroupName="passwordGroup">
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" formControlName="password"/>
+        <p class="registerError">
+            <app-error [controlParam]="registerForm.controls.passwordGroup.controls['password']"></app-error>
+        </p>
+        <!--
+        <mat-error>
+          {{errors.password}}
+        </mat-error>-->
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword" [errorStateMatcher]="confirmValidParentMatcher">
+        <p class="registerError">
+            <app-error [controlParam]="registerForm.controls.passwordGroup.controls['confirmPassword']"></app-error>
+        </p>
+        <!-- <mat-error>
+          {{errors.confirmPassword}}
+        </mat-error>-->
+      </mat-form-field>
+    </div>
+</form>
+<div>
+    <button mat-button matStepperPrevious>Back</button>
+    <button type="submit" mat-button matStepperNext [disabled]="!registerForm.valid" onclick="">Register</button>
+  </div>
+</mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+

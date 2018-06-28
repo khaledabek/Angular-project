@@ -1,0 +1,30 @@
+@import url("~@angular/material/prebuilt-themes/deeppurple-amber.css");
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -ms-overflow-style: none;
+  overflow: auto;
+}
+
+body {
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+}
+
+.basic-container {
+  padding: 5px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+
+.mat-progress-spinner svg {
+  width: 30px !important;
+  height: 30px !important;
+}
+/*# sourceMappingURL=custom.style.css.map */
