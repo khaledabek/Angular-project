@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net452": {
+      "wrappedProject": "../../2-BO/2-BO.csproj",
+      "bin": {
+        "assembly": "../../2-BO/obj/{configuration}/2-BO.dll",
+        "pdb": "../../2-BO/obj/{configuration}/2-BO.pdb"
+      },
+      "dependencies": {
+        "EntityFramework": "6.2.0"
+      }
+    }
+  }
+}

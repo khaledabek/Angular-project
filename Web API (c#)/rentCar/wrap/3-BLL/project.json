@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net452": {
+      "wrappedProject": "../../3-BLL/3-BLL.csproj",
+      "bin": {
+        "assembly": "../../3-BLL/obj/{configuration}/3-BLL.dll",
+        "pdb": "../../3-BLL/obj/{configuration}/3-BLL.pdb"
+      },
+      "dependencies": {
+        "EntityFramework": "6.2.0",
+        "1-DAL": "1.0.0-*",
+        "2-BO": "1.0.0-*"
+      }
+    }
+  }
+}

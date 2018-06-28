@@ -1,0 +1,19 @@
+C:\Users\khaledell\Documents\Visual Studio 2015\Projects\rentCar\2-BO\bin\Debug\2-BO.dll.config
+C:\Users\khaledell\Documents\Visual Studio 2015\Projects\rentCar\2-BO\bin\Debug\2-BO.dll
+C:\Users\khaledell\Documents\Visual Studio 2015\Projects\rentCar\2-BO\bin\Debug\2-BO.pdb
+C:\Users\khaledell\Documents\Visual Studio 2015\Projects\rentCar\2-BO\bin\Debug\EntityFramework.dll
+C:\Users\khaledell\Documents\Visual Studio 2015\Projects\rentCar\2-BO\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\khaledell\Documents\Visual Studio 2015\Projects\rentCar\2-BO\bin\Debug\EntityFramework.xml
+C:\Users\khaledell\Documents\Visual Studio 2015\Projects\rentCar\2-BO\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\khaledell\Documents\Visual Studio 2015\Projects\rentCar\2-BO\obj\Debug\2-BO.dll
+C:\Users\khaledell\Documents\Visual Studio 2015\Projects\rentCar\2-BO\obj\Debug\2-BO.pdb
+C:\Users\khaledell\Desktop\rentCar\2-BO\bin\Debug\2-BO.dll.config
+C:\Users\khaledell\Desktop\rentCar\2-BO\bin\Debug\2-BO.dll
+C:\Users\khaledell\Desktop\rentCar\2-BO\bin\Debug\2-BO.pdb
+C:\Users\khaledell\Desktop\rentCar\2-BO\bin\Debug\EntityFramework.dll
+C:\Users\khaledell\Desktop\rentCar\2-BO\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\khaledell\Desktop\rentCar\2-BO\bin\Debug\EntityFramework.xml
+C:\Users\khaledell\Desktop\rentCar\2-BO\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\khaledell\Desktop\rentCar\2-BO\obj\Debug\2-BO.csprojResolveAssemblyReference.cache
+C:\Users\khaledell\Desktop\rentCar\2-BO\obj\Debug\2-BO.dll
+C:\Users\khaledell\Desktop\rentCar\2-BO\obj\Debug\2-BO.pdb

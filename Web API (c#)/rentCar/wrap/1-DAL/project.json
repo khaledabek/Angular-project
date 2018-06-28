@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net452": {
+      "wrappedProject": "../../1-DAL/1-DAL.csproj",
+      "bin": {
+        "assembly": "../../1-DAL/obj/{configuration}/1-DAL.dll",
+        "pdb": "../../1-DAL/obj/{configuration}/1-DAL.pdb"
+      },
+      "dependencies": {
+        "EntityFramework": "6.1.3"
+      }
+    }
+  }
+}

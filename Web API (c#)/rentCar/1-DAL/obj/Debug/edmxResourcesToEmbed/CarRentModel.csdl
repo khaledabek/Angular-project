@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarRentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="branchs_tbl">
+    <Key>
+      <PropertyRef Name="BranchId" />
+    </Key>
+    <Property Name="BranchId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adress" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BranchName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="cars_tbl" Relationship="Self.FK__cars_tbl__Branch__1920BF5C" FromRole="branchs_tbl" ToRole="cars_tbl" />
+  </EntityType>
+  <EntityType Name="cars_tbl">
+    <Key>
+      <PropertyRef Name="CarId" />
+    </Key>
+    <Property Name="CarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarTypeId" Type="Int32" Nullable="false" />
+    <Property Name="ActuallyKm" Type="Int32" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ProperToBeRent" Type="Boolean" />
+    <Property Name="AvaibleToBeRent" Type="Boolean" />
+    <Property Name="DayPrice" Type="Int32" Nullable="false" />
+    <Property Name="DayDelayPrice" Type="Int32" Nullable="false" />
+    <Property Name="PlateNumber" Type="Int32" />
+    <Property Name="BranchId" Type="Int32" />
+    <NavigationProperty Name="branchs_tbl" Relationship="Self.FK__cars_tbl__Branch__1920BF5C" FromRole="cars_tbl" ToRole="branchs_tbl" />
+    <NavigationProperty Name="carsType_tbl" Relationship="Self.FK__cars_tbl__CarTyp__1A14E395" FromRole="cars_tbl" ToRole="carsType_tbl" />
+    <NavigationProperty Name="orders_tbl" Relationship="Self.FK__orders_tb__CarId__1B0907CE" FromRole="cars_tbl" ToRole="orders_tbl" />
+  </EntityType>
+  <EntityType Name="carsType_tbl">
+    <Key>
+      <PropertyRef Name="CarTypeId" />
+    </Key>
+    <Property Name="CarTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModelMake" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ModelName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ModelYear" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ModelBody" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ModelWeightKg" Type="Int32" />
+    <Property Name="ModelDoors" Type="Int32" />
+    <Property Name="Gear" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BranchesCar" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cars_tbl" Relationship="Self.FK__cars_tbl__CarTyp__1A14E395" FromRole="carsType_tbl" ToRole="cars_tbl" />
+  </EntityType>
+  <EntityType Name="orders_tbl">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PickUpDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ActuallReturnDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CarId" Type="Int32" />
+    <NavigationProperty Name="cars_tbl" Relationship="Self.FK__orders_tb__CarId__1B0907CE" FromRole="orders_tbl" ToRole="cars_tbl" />
+    <NavigationProperty Name="users_tbl" Relationship="Self.FK__orders_tb__UserI__1BFD2C07" FromRole="orders_tbl" ToRole="users_tbl" />
+  </EntityType>
+  <EntityType Name="users_tbl">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Identity" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BirthDay" Type="DateTime" Precision="0" />
+    <Property Name="Gender" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Passwords" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Rank" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="orders_tbl" Relationship="Self.FK__orders_tb__UserI__1BFD2C07" FromRole="users_tbl" ToRole="orders_tbl" />
+  </EntityType>
+  <Association Name="FK__cars_tbl__Branch__1920BF5C">
+    <End Role="branchs_tbl" Type="Self.branchs_tbl" Multiplicity="0..1" />
+    <End Role="cars_tbl" Type="Self.cars_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="branchs_tbl">
+        <PropertyRef Name="BranchId" />
+      </Principal>
+      <Dependent Role="cars_tbl">
+        <PropertyRef Name="BranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cars_tbl__CarTyp__1A14E395">
+    <End Role="carsType_tbl" Type="Self.carsType_tbl" Multiplicity="1" />
+    <End Role="cars_tbl" Type="Self.cars_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="carsType_tbl">
+        <PropertyRef Name="CarTypeId" />
+      </Principal>
+      <Dependent Role="cars_tbl">
+        <PropertyRef Name="CarTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orders_tb__CarId__1B0907CE">
+    <End Role="cars_tbl" Type="Self.cars_tbl" Multiplicity="0..1" />
+    <End Role="orders_tbl" Type="Self.orders_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cars_tbl">
+        <PropertyRef Name="CarId" />
+      </Principal>
+      <Dependent Role="orders_tbl">
+        <PropertyRef Name="CarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__orders_tb__UserI__1BFD2C07">
+    <End Role="users_tbl" Type="Self.users_tbl" Multiplicity="0..1" />
+    <End Role="orders_tbl" Type="Self.orders_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users_tbl">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="orders_tbl">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarRentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="branchs_tbl" EntityType="Self.branchs_tbl" />
+    <EntitySet Name="cars_tbl" EntityType="Self.cars_tbl" />
+    <EntitySet Name="carsType_tbl" EntityType="Self.carsType_tbl" />
+    <EntitySet Name="orders_tbl" EntityType="Self.orders_tbl" />
+    <EntitySet Name="users_tbl" EntityType="Self.users_tbl" />
+    <AssociationSet Name="FK__cars_tbl__Branch__1920BF5C" Association="Self.FK__cars_tbl__Branch__1920BF5C">
+      <End Role="branchs_tbl" EntitySet="branchs_tbl" />
+      <End Role="cars_tbl" EntitySet="cars_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cars_tbl__CarTyp__1A14E395" Association="Self.FK__cars_tbl__CarTyp__1A14E395">
+      <End Role="carsType_tbl" EntitySet="carsType_tbl" />
+      <End Role="cars_tbl" EntitySet="cars_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orders_tb__CarId__1B0907CE" Association="Self.FK__orders_tb__CarId__1B0907CE">
+      <End Role="cars_tbl" EntitySet="cars_tbl" />
+      <End Role="orders_tbl" EntitySet="orders_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="FK__orders_tb__UserI__1BFD2C07" Association="Self.FK__orders_tb__UserI__1BFD2C07">
+      <End Role="users_tbl" EntitySet="users_tbl" />
+      <End Role="orders_tbl" EntitySet="orders_tbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
